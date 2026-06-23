@@ -80,7 +80,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     border: var(--style-border-width) solid var(--color-border);
     border-radius: var(--style-border-radius-md);
     background: var(--color-background);
@@ -111,7 +110,7 @@
     right: var(--margin-2xs);
     padding: var(--padding-3xs) var(--padding-2xs);
     border-radius: var(--style-border-radius-xs);
-    background: var(--color-foreground-mix-background-15, rgba(0, 0, 0, 0.08));
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-10));
     font-size: var(--font-paragraph-small--size);
     font-weight: var(--font-weight-bold);
     white-space: nowrap;

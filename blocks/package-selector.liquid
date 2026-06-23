@@ -35,8 +35,14 @@
 
   .package-selector__grid {
     display: grid;
-    grid-template-columns: repeat(var(--package-selector-columns, 2), 1fr);
+    grid-template-columns: 1fr;
     gap: var(--gap-sm);
+  }
+
+  @media screen and (min-width: 750px) {
+    .package-selector__grid {
+      grid-template-columns: repeat(var(--package-selector-columns, 2), 1fr);
+    }
   }
 {% endstylesheet %}
 

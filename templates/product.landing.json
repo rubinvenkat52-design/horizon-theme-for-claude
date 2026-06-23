@@ -161,8 +161,10 @@
             "size_chart": {
               "type": "button",
               "settings": {
-                "label": "Size guide",
-                "style_class": "link"
+                "label": "📏 Size Chart",
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
               }
             },
             "offer_label": {

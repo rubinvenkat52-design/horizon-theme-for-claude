@@ -1,0 +1,61 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<li
+  class="usp-item"
+  {{ block.shopify_attributes }}
+>
+  {% render 'icon-or-image', icon: block_settings.icon, width: 18 %}
+  <span class="usp-item__text">{{ block_settings.text }}</span>
+</li>
+
+{% stylesheet %}
+  .usp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-2xs);
+    list-style: none;
+  }
+
+  .usp-item svg {
+    flex-shrink: 0;
+    margin-block-start: 0.2em;
+    color: #1ea672;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "USP item",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        { "value": "check_box", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "lock", "label": "Lock" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "paw_print", "label": "Paw print" }
+      ],
+      "default": "check_box"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Waterproof collar built for any weather"
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP item"
+    }
+  ]
+}
+{% endschema %}

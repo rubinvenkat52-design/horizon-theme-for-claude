@@ -1,0 +1,84 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div
+  class="rating-badge"
+  {{ block.shopify_attributes }}
+>
+  <span class="rating-badge__rank">{{ block_settings.rank_text }}</span>
+  <span class="rating-badge__copy">
+    <span class="rating-badge__title">{{ block_settings.title }}</span>
+    <span class="rating-badge__subtitle">{{ block_settings.subtitle }}</span>
+  </span>
+</div>
+
+{% stylesheet %}
+  .rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--style-border-radius-sm);
+    padding: var(--padding-3xs) var(--padding-sm);
+  }
+
+  .rating-badge__rank {
+    flex-shrink: 0;
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--style-border-radius-xs);
+    padding: var(--padding-3xs) var(--padding-2xs);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .rating-badge__copy {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .rating-badge__title {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .rating-badge__subtitle {
+    font-size: var(--font-paragraph-small--size);
+    opacity: var(--opacity-80, 0.8);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rating badge",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "rank_text",
+      "label": "Rank text",
+      "default": "#1"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "BESTSELLER OF 2026"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The best wireless dog fence in the US"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rating badge"
+    }
+  ]
+}
+{% endschema %}

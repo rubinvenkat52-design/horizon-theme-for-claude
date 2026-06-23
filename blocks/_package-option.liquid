@@ -15,9 +15,9 @@
     endif
   endfor
 
-  assign savings_percent = 0
+  assign savings_amount = 0
   if matched_variant != blank and matched_variant.compare_at_price > matched_variant.price
-    assign savings_percent = matched_variant.compare_at_price | minus: matched_variant.price | times: 100.0 | divided_by: matched_variant.compare_at_price | round
+    assign savings_amount = matched_variant.compare_at_price | minus: matched_variant.price
   endif
 %}
 
@@ -31,41 +31,48 @@
   on:click="/selectPackage"
   {{ block.shopify_attributes }}
 >
-  {%- if block_settings.badge_text != blank -%}
-    <span class="package-option__badge">{{ block_settings.badge_text }}</span>
+  {%- if block_settings.corner_tag_text != blank -%}
+    <span class="package-option__corner-tag">{{ block_settings.corner_tag_text }}</span>
   {%- endif -%}
 
-  {%- if block_settings.image -%}
-    <span class="package-option__image">
-      {{
-        block_settings.image
-        | image_url: width: 300
-        | image_tag: loading: 'lazy', widths: '150, 200, 300'
-      }}
-    </span>
+  {%- if block_settings.highlight and block_settings.ribbon_text != blank -%}
+    <span class="package-option__ribbon">{{ block_settings.ribbon_text }}</span>
   {%- endif -%}
 
-  <span class="package-option__title">{{ block_settings.title }}</span>
+  <span class="package-option__main">
+    {%- if block_settings.image -%}
+      <span class="package-option__image">
+        {{
+          block_settings.image
+          | image_url: width: 160
+          | image_tag: loading: 'lazy', widths: '80, 120, 160'
+        }}
+      </span>
+    {%- endif -%}
 
-  {%- if block_settings.subtitle != blank -%}
-    <span class="package-option__subtitle">{{ block_settings.subtitle }}</span>
-  {%- endif -%}
-
-  {%- if block_settings.bonus_items != blank -%}
-    <div class="package-option__bonus rte">{{ block_settings.bonus_items }}</div>
-  {%- endif -%}
-
-  {%- if matched_variant != blank -%}
-    <span class="package-option__price">
-      <span class="package-option__price-now">{{ matched_variant.price | money }}</span>
-      {%- if matched_variant.compare_at_price > matched_variant.price -%}
-        <s class="package-option__price-compare">{{ matched_variant.compare_at_price | money }}</s>
+    <span class="package-option__info">
+      <span class="package-option__title">{{ block_settings.title }}</span>
+      {%- if block_settings.subtitle != blank -%}
+        <span class="package-option__subtitle">{{ block_settings.subtitle }}</span>
       {%- endif -%}
-      {%- if savings_percent > 0 -%}
-        <span class="package-option__savings">Save {{ savings_percent }}%</span>
+      {%- if savings_amount > 0 -%}
+        <span class="package-option__savings">Save {{ savings_amount | money }}</span>
       {%- endif -%}
     </span>
-  {%- endif -%}
+
+    {%- if matched_variant != blank -%}
+      <span class="package-option__price-stack">
+        <span class="package-option__price-now">{{ matched_variant.price | money }}</span>
+        {%- if matched_variant.compare_at_price > matched_variant.price -%}
+          <s class="package-option__price-compare">{{ matched_variant.compare_at_price | money }}</s>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  </span>
+
+  <span class="package-option__perks">
+    {% content_for 'blocks' %}
+  </span>
 </button>
 
 {% stylesheet %}
@@ -73,16 +80,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--gap-2xs);
-    padding: var(--padding-lg);
+    overflow: hidden;
     border: var(--style-border-width) solid var(--color-border);
     border-radius: var(--style-border-radius-md);
     background: var(--color-background);
     cursor: pointer;
     font: inherit;
     color: inherit;
+    text-align: left;
+    padding: 0;
     transition: border-color var(--animation-speed, 0.2s) ease, box-shadow var(--animation-speed, 0.2s) ease;
   }
 
@@ -99,24 +105,54 @@
     border-color: var(--color-primary);
   }
 
-  .package-option__badge {
+  .package-option__corner-tag {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: var(--padding-3xs) var(--padding-sm);
-    border-radius: var(--style-border-radius-pills);
-    background: var(--color-primary);
-    color: var(--color-background);
+    top: var(--margin-2xs);
+    right: var(--margin-2xs);
+    padding: var(--padding-3xs) var(--padding-2xs);
+    border-radius: var(--style-border-radius-xs);
+    background: var(--color-foreground-mix-background-15, rgba(0, 0, 0, 0.08));
     font-size: var(--font-paragraph-small--size);
     font-weight: var(--font-weight-bold);
     white-space: nowrap;
   }
 
+  .package-option__ribbon {
+    position: absolute;
+    top: var(--margin-xs);
+    right: calc(-1 * var(--margin-2xl, 32px));
+    transform: rotate(45deg);
+    width: 9em;
+    padding: var(--padding-3xs) 0;
+    background: var(--color-primary);
+    color: var(--color-background);
+    font-size: var(--font-paragraph-small--size);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .package-option__main {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    padding: var(--padding-lg);
+  }
+
   .package-option__image img {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    max-width: 4.5rem;
     height: auto;
+    border-radius: var(--style-border-radius-sm);
+  }
+
+  .package-option__info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--gap-4xs, 2px);
+    min-width: 0;
   }
 
   .package-option__title {
@@ -129,32 +165,33 @@
     font-size: var(--font-paragraph-small--size);
   }
 
-  .package-option__bonus {
-    font-size: var(--font-paragraph-small--size);
-    opacity: var(--opacity-80, 0.8);
-  }
-
-  .package-option__price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--gap-3xs);
-    margin-block-start: var(--margin-2xs);
-  }
-
-  .package-option__price-now {
-    font-weight: var(--font-weight-bold);
-  }
-
-  .package-option__price-compare {
-    opacity: var(--opacity-80, 0.8);
-  }
-
   .package-option__savings {
     color: var(--color-primary);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-paragraph-small--size);
+  }
+
+  .package-option__price-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+    gap: var(--gap-4xs, 2px);
+  }
+
+  .package-option__price-now {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-h6--size, var(--font-paragraph--size));
+  }
+
+  .package-option__price-compare {
+    opacity: var(--opacity-80, 0.8);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .package-option__perks {
+    display: flex;
+    flex-direction: column;
   }
 {% endstylesheet %}
 
@@ -162,6 +199,11 @@
 {
   "name": "Package option",
   "tag": null,
+  "blocks": [
+    {
+      "type": "_package-perk"
+    }
+  ],
   "settings": [
     {
       "type": "text",
@@ -178,9 +220,15 @@
     },
     {
       "type": "text",
-      "id": "badge_text",
-      "label": "Badge text",
-      "default": "MOST POPULAR"
+      "id": "ribbon_text",
+      "label": "Ribbon text (shown when highlighted)",
+      "default": "Most popular"
+    },
+    {
+      "type": "text",
+      "id": "corner_tag_text",
+      "label": "Corner tag text",
+      "info": "Small label in the top-right corner, e.g. \"+ Free gifts\"."
     },
     {
       "type": "image_picker",
@@ -198,12 +246,6 @@
       "id": "subtitle",
       "label": "Subtitle",
       "default": "Perfect for a single dog household"
-    },
-    {
-      "type": "richtext",
-      "id": "bonus_items",
-      "label": "Bonus items",
-      "default": "<p>Includes collar, charger, and training flags</p>"
     }
   ],
   "presets": [

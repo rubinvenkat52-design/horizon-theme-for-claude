@@ -32,7 +32,7 @@ class PackageSelector extends Component {
 
   /** @param {Event} event */
   selectPackage(event) {
-    const card = event.target;
+    const card = event.currentTarget;
     if (!(card instanceof HTMLElement) || !this.#picker) return;
 
     const optionValue = card.dataset.optionValue;

@@ -1,0 +1,84 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div
+  class="trust-rating"
+  {{ block.shopify_attributes }}
+>
+  <span class="trust-rating__stars" aria-hidden="true">
+    {%- for i in (1..5) -%}
+      <span class="trust-rating__star">★</span>
+    {%- endfor -%}
+  </span>
+  <span class="trust-rating__copy">
+    <strong>{{ block_settings.rating_label }}</strong>
+    {{ block_settings.rating }}/5
+    ({{ block_settings.review_count }})
+    <span class="trust-rating__source">{{ block_settings.source_name }}</span>
+  </span>
+</div>
+
+{% stylesheet %}
+  .trust-rating {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-2xs);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .trust-rating__stars {
+    display: inline-flex;
+    color: var(--color-foreground, currentColor);
+  }
+
+  .trust-rating__star {
+    color: #1ea672;
+  }
+
+  .trust-rating__source {
+    text-decoration: underline;
+    opacity: var(--opacity-80, 0.8);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trust rating",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Rating",
+      "default": "4.91"
+    },
+    {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Rating label",
+      "default": "Excellent"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "10,364"
+    },
+    {
+      "type": "text",
+      "id": "source_name",
+      "label": "Source name",
+      "default": "Trustpilot"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust rating"
+    }
+  ]
+}
+{% endschema %}

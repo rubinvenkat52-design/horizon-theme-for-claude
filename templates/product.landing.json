@@ -58,78 +58,117 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "header": {
-              "type": "group",
+            "rating_badge": {
+              "type": "_rating-badge",
               "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "title": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h2"
-                  }
-                },
-                "rating": {
-                  "type": "review",
-                  "settings": {
-                    "stars_style": "shaded",
-                    "show_number": true,
-                    "rating_color": "primary",
-                    "type_preset": "paragraph",
-                    "width": "fit-content"
-                  }
-                },
-                "price": {
-                  "type": "price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "h4",
-                    "width": "100%",
-                    "alignment": "left"
-                  }
-                }
-              },
-              "block_order": ["title", "rating", "price"]
+                "rank_text": "#1",
+                "title": "BESTSELLER OF 2026",
+                "subtitle": "The best wireless dog fence in the US"
+              }
             },
-            "bullets": {
+            "trust_rating": {
+              "type": "_trust-rating",
+              "settings": {
+                "rating": "4.91",
+                "rating_label": "Excellent",
+                "review_count": "10,364",
+                "source_name": "Trustpilot"
+              }
+            },
+            "title": {
               "type": "text",
               "settings": {
-                "text": "<ul><li>Covers up to 5 acres of yard</li><li>Adjustable vibration and static correction</li><li>Waterproof, rechargeable collar</li><li>Works for unlimited dogs on one base</li></ul>",
+                "text": "<h1>{{ closest.product.title }}</h1>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2"
+              }
+            },
+            "detail_1": {
+              "type": "text",
+              "settings": {
+                "text": "<p>The smartest way to keep your dog safe, without wires, digging, or shock fences.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h6"
+              }
+            },
+            "detail_2": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Set a custom GPS boundary anywhere in minutes. No buried wire, no professional install, and it travels with you.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte"
+              }
+            },
+            "sale_badge": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Father's Day Sale – Save Up To 60%</p>",
+                "width": "fit-content",
+                "type_preset": "custom",
+                "font_size": "0.875rem",
+                "case": "uppercase",
+                "color": "var(--color-primary)",
+                "background": true,
+                "background_color": "#fde7e7",
+                "corner_radius": 50,
+                "padding-block-start": 6,
+                "padding-block-end": 6,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16
+              }
+            },
+            "usp_checklist": {
+              "type": "usp-checklist",
+              "settings": {},
+              "blocks": {
+                "usp-1": {
+                  "type": "_usp-item",
+                  "settings": {
+                    "icon": "check_box",
+                    "text": "Covers up to 5 acres of yard, no buried wire needed"
+                  }
+                },
+                "usp-2": {
+                  "type": "_usp-item",
+                  "settings": {
+                    "icon": "check_box",
+                    "text": "Waterproof collar built for any weather"
+                  }
+                },
+                "usp-3": {
+                  "type": "_usp-item",
+                  "settings": {
+                    "icon": "check_box",
+                    "text": "Real-time GPS tracking in the companion app"
+                  }
+                },
+                "usp-4": {
+                  "type": "_usp-item",
+                  "settings": {
+                    "icon": "check_box",
+                    "text": "Free shipping and 30-day money-back guarantee"
+                  }
+                }
+              },
+              "block_order": ["usp-1", "usp-2", "usp-3", "usp-4"]
+            },
+            "size_chart": {
+              "type": "button",
+              "settings": {
+                "label": "Size guide",
+                "style_class": "link"
+              }
+            },
+            "offer_label": {
+              "type": "_offer-label",
+              "settings": {
+                "text": "Limited time offer"
               }
             },
             "package_selector": {
@@ -147,10 +186,21 @@
                     "variant_option_value": "1 Dog",
                     "title": "For 1 Dog",
                     "subtitle": "Perfect for a single dog household",
-                    "badge_text": "",
                     "highlight": false,
-                    "bonus_items": "<p>Includes collar, charger, and training flags</p>"
-                  }
+                    "ribbon_text": "",
+                    "corner_tag_text": ""
+                  },
+                  "blocks": {
+                    "perk_1": {
+                      "type": "_package-perk",
+                      "settings": { "emoji": "🚚", "text": "Free shipping" }
+                    },
+                    "perk_2": {
+                      "type": "_package-perk",
+                      "settings": { "emoji": "🎁", "text": "Free training flags included" }
+                    }
+                  },
+                  "block_order": ["perk_1", "perk_2"]
                 },
                 "pkg_2": {
                   "type": "_package-option",
@@ -158,10 +208,25 @@
                     "variant_option_value": "2 Dogs",
                     "title": "For 2 Dogs",
                     "subtitle": "Our most popular bundle",
-                    "badge_text": "MOST POPULAR",
                     "highlight": true,
-                    "bonus_items": "<p>Includes 2 collars, 2 chargers, and training flags</p>"
-                  }
+                    "ribbon_text": "Most popular",
+                    "corner_tag_text": "+ Free gifts"
+                  },
+                  "blocks": {
+                    "perk_1": {
+                      "type": "_package-perk",
+                      "settings": { "emoji": "🚚", "text": "Free shipping" }
+                    },
+                    "perk_2": {
+                      "type": "_package-perk",
+                      "settings": { "emoji": "🎁", "text": "Free training flags included" }
+                    },
+                    "perk_3": {
+                      "type": "_package-perk",
+                      "settings": { "emoji": "🏷️", "text": "+10 FREE boundary training markers ($20 value)" }
+                    }
+                  },
+                  "block_order": ["perk_1", "perk_2", "perk_3"]
                 }
               },
               "block_order": ["pkg_1", "pkg_2"]
@@ -213,14 +278,14 @@
               },
               "block_order": []
             },
-            "trust_row": {
+            "guarantee": {
               "type": "group",
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": true,
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
-                "gap": 16,
+                "gap": 8,
                 "width": "fill",
                 "custom_width": 100,
                 "height": "fit",
@@ -239,76 +304,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "icon_1": {
+                "icon": {
                   "type": "icon",
-                  "settings": { "icon": "truck", "width": 18 }
+                  "settings": { "icon": "return", "width": 20 }
                 },
-                "text_1": {
+                "text": {
                   "type": "text",
-                  "settings": { "text": "<p>Free shipping</p>", "type_preset": "paragraph" }
-                },
-                "icon_2": {
-                  "type": "icon",
-                  "settings": { "icon": "return", "width": 18 }
-                },
-                "text_2": {
-                  "type": "text",
-                  "settings": { "text": "<p>30-day guarantee</p>", "type_preset": "paragraph" }
-                },
-                "icon_3": {
-                  "type": "icon",
-                  "settings": { "icon": "lock", "width": 18 }
-                },
-                "text_3": {
-                  "type": "text",
-                  "settings": { "text": "<p>Secure checkout</p>", "type_preset": "paragraph" }
+                  "settings": { "text": "<p>30-day money-back guarantee</p>", "type_preset": "paragraph" }
                 }
               },
-              "block_order": ["icon_1", "text_1", "icon_2", "text_2", "icon_3", "text_3"]
-            },
-            "mini_accordion": {
-              "type": "accordion",
-              "settings": {
-                "icon": "caret",
-                "dividers": true,
-                "type_preset": "h6",
-                "inherit_color_scheme": true,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "row_1": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Shipping & delivery" },
-                  "blocks": {
-                    "text-1": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Orders ship within 1-2 business days and arrive within 5-7 business days.</p>",
-                        "width": "100%"
-                      }
-                    }
-                  },
-                  "block_order": ["text-1"]
-                },
-                "row_2": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Our guarantee" },
-                  "blocks": {
-                    "text-1": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Try it for 30 days. If you're not satisfied, return it for a full refund.</p>",
-                        "width": "100%"
-                      }
-                    }
-                  },
-                  "block_order": ["text-1"]
-                }
-              },
-              "block_order": ["row_1", "row_2"]
+              "block_order": ["icon", "text"]
             },
             "payment_icons": {
               "type": "payment-icons",
@@ -323,13 +328,19 @@
             }
           },
           "block_order": [
-            "header",
-            "bullets",
+            "rating_badge",
+            "trust_rating",
+            "title",
+            "detail_1",
+            "detail_2",
+            "sale_badge",
+            "usp_checklist",
+            "size_chart",
+            "offer_label",
             "package_selector",
             "variant_picker",
             "buy_buttons",
-            "trust_row",
-            "mini_accordion",
+            "guarantee",
             "payment_icons"
           ]
         }

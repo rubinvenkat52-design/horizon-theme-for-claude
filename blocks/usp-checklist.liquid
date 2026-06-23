@@ -1,0 +1,71 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<ul
+  class="usp-checklist"
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</ul>
+
+{% stylesheet %}
+  .usp-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2xs);
+    margin: 0;
+    padding: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "USP checklist",
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "_usp-item"
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "USP checklist",
+      "blocks": {
+        "usp-1": {
+          "type": "_usp-item",
+          "settings": {
+            "icon": "check_box",
+            "text": "Covers up to 5 acres of yard, no buried wire needed"
+          }
+        },
+        "usp-2": {
+          "type": "_usp-item",
+          "settings": {
+            "icon": "check_box",
+            "text": "Waterproof collar built for any weather"
+          }
+        },
+        "usp-3": {
+          "type": "_usp-item",
+          "settings": {
+            "icon": "check_box",
+            "text": "Real-time GPS tracking in the companion app"
+          }
+        },
+        "usp-4": {
+          "type": "_usp-item",
+          "settings": {
+            "icon": "check_box",
+            "text": "Free shipping and 30-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": ["usp-1", "usp-2", "usp-3", "usp-4"]
+    }
+  ]
+}
+{% endschema %}

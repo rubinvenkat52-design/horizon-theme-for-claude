@@ -1,0 +1,56 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div
+  class="offer-label"
+  {{ block.shopify_attributes }}
+>
+  <span class="offer-label__line"></span>
+  <span class="offer-label__text">{{ block_settings.text }}</span>
+  <span class="offer-label__line"></span>
+</div>
+
+{% stylesheet %}
+  .offer-label {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+  }
+
+  .offer-label__line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .offer-label__text {
+    flex-shrink: 0;
+    font-size: var(--font-paragraph-small--size);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Offer label",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Limited time offer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offer label"
+    }
+  ]
+}
+{% endschema %}

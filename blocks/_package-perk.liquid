@@ -1,0 +1,58 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div
+  class="package-perk"
+  {{ block.shopify_attributes }}
+>
+  <span class="package-perk__emoji" aria-hidden="true">{{ block_settings.emoji }}</span>
+  <span class="package-perk__text">{{ block_settings.text }}</span>
+</div>
+
+{% stylesheet %}
+  .package-perk {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+    padding: var(--padding-2xs) var(--padding-sm);
+    background: var(--color-foreground-mix-background-15, rgba(0, 0, 0, 0.05));
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .package-perk:last-child {
+    border-radius: 0 0 var(--style-border-radius-sm) var(--style-border-radius-sm);
+  }
+
+  .package-perk__text {
+    font-weight: var(--font-weight-bold);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Package perk",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji",
+      "default": "🎁"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "+10 FREE Boundary Training Markers ($20 Value)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Package perk"
+    }
+  ]
+}
+{% endschema %}

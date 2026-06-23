@@ -1,0 +1,169 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign rating_int = block_settings.rating | plus: 0
+%}
+
+<article
+  class="review-card"
+  data-rating="{{ rating_int }}"
+  ref="reviewCards[]"
+  {{ block.shopify_attributes }}
+>
+  <div
+    class="review-card__stars"
+    aria-label="{{ rating_int }} out of 5 stars"
+  >
+    {%- for star in (1..5) -%}
+      <span class="svg-wrapper review-card__star{% if star <= rating_int %} review-card__star--filled{% endif %}">
+        <svg
+          viewBox="0 0 32 32"
+          role="presentation"
+        >
+          <path d="M31.547 12a.848.848 0 00-.677-.577l-9.427-1.376-4.224-8.532a.847.847 0 00-1.516 0l-4.218 8.534-9.427 1.355a.847.847 0 00-.467 1.467l6.823 6.664-1.612 9.375a.847.847 0 001.23.893l8.428-4.434 8.432 4.432a.847.847 0 001.229-.894l-1.615-9.373 6.822-6.665a.845.845 0 00.214-.869z" />
+        </svg>
+      </span>
+    {%- endfor -%}
+  </div>
+
+  <div class="review-card__meta">
+    <span class="review-card__author">{{ block_settings.author_name }}</span>
+    {%- if block_settings.verified -%}
+      <span class="review-card__verified">
+        <span class="svg-wrapper">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
+        Verified buyer
+      </span>
+    {%- endif -%}
+    {%- if block_settings.date != blank -%}
+      <span class="review-card__date">{{ block_settings.date }}</span>
+    {%- endif -%}
+  </div>
+
+  {%- if block_settings.title != blank -%}
+    <h3 class="review-card__title">{{ block_settings.title }}</h3>
+  {%- endif -%}
+
+  <div class="review-card__body rte">{{ block_settings.body }}</div>
+</article>
+
+{% stylesheet %}
+  .review-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2xs);
+    padding: var(--padding-lg);
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--style-border-radius-md);
+  }
+
+  .review-card__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .review-card__star {
+    width: 16px;
+    height: 16px;
+    fill: rgb(var(--color-foreground-rgb) / var(--opacity-20));
+  }
+
+  .review-card__star--filled {
+    fill: var(--color-primary);
+  }
+
+  .review-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap-2xs);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .review-card__author {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .review-card__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap-3xs);
+    opacity: var(--opacity-80, 0.8);
+  }
+
+  .review-card__verified .svg-wrapper {
+    width: 14px;
+    height: 14px;
+  }
+
+  .review-card__date {
+    margin-inline-start: auto;
+    opacity: var(--opacity-80, 0.8);
+  }
+
+  .review-card__title {
+    margin: 0;
+  }
+
+  .review-card__body {
+    margin: 0;
+    opacity: var(--opacity-80, 0.8);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Review",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Reviewer name",
+      "default": "Happy customer"
+    },
+    {
+      "type": "checkbox",
+      "id": "verified",
+      "label": "Show verified buyer badge",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "date",
+      "label": "Date",
+      "default": "2 weeks ago"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Review title",
+      "default": "Worked from day one"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Review text",
+      "default": "<p>Setup was simple and my dog learned the boundary within a few days. Couldn't be happier.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review"
+    }
+  ]
+}
+{% endschema %}

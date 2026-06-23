@@ -1,0 +1,215 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign product_resource = closest.product
+  if request.visual_preview_mode and product_resource == blank
+    assign product_resource = collections.all.products.first
+  endif
+
+  assign matched_variant = blank
+  for product_variant in product_resource.variants
+    if product_variant.options contains block_settings.variant_option_value
+      assign matched_variant = product_variant
+      break
+    endif
+  endfor
+
+  assign savings_percent = 0
+  if matched_variant != blank and matched_variant.compare_at_price > matched_variant.price
+    assign savings_percent = matched_variant.compare_at_price | minus: matched_variant.price | times: 100.0 | divided_by: matched_variant.compare_at_price | round
+  endif
+%}
+
+<button
+  type="button"
+  class="package-option{% if block_settings.highlight %} package-option--highlighted{% endif %}"
+  data-option-value="{{ block_settings.variant_option_value | escape }}"
+  data-variant-id="{{ matched_variant.id }}"
+  role="radio"
+  aria-checked="false"
+  on:click="/selectPackage"
+  {{ block.shopify_attributes }}
+>
+  {%- if block_settings.badge_text != blank -%}
+    <span class="package-option__badge">{{ block_settings.badge_text }}</span>
+  {%- endif -%}
+
+  {%- if block_settings.image -%}
+    <span class="package-option__image">
+      {{
+        block_settings.image
+        | image_url: width: 300
+        | image_tag: loading: 'lazy', widths: '150, 200, 300'
+      }}
+    </span>
+  {%- endif -%}
+
+  <span class="package-option__title">{{ block_settings.title }}</span>
+
+  {%- if block_settings.subtitle != blank -%}
+    <span class="package-option__subtitle">{{ block_settings.subtitle }}</span>
+  {%- endif -%}
+
+  {%- if block_settings.bonus_items != blank -%}
+    <div class="package-option__bonus rte">{{ block_settings.bonus_items }}</div>
+  {%- endif -%}
+
+  {%- if matched_variant != blank -%}
+    <span class="package-option__price">
+      <span class="package-option__price-now">{{ matched_variant.price | money }}</span>
+      {%- if matched_variant.compare_at_price > matched_variant.price -%}
+        <s class="package-option__price-compare">{{ matched_variant.compare_at_price | money }}</s>
+      {%- endif -%}
+      {%- if savings_percent > 0 -%}
+        <span class="package-option__savings">Save {{ savings_percent }}%</span>
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</button>
+
+{% stylesheet %}
+  .package-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--gap-2xs);
+    padding: var(--padding-lg);
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--style-border-radius-md);
+    background: var(--color-background);
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: border-color var(--animation-speed, 0.2s) ease, box-shadow var(--animation-speed, 0.2s) ease;
+  }
+
+  .package-option:hover {
+    border-color: var(--color-primary);
+  }
+
+  .package-option--active {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+
+  .package-option--highlighted {
+    border-color: var(--color-primary);
+  }
+
+  .package-option__badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: var(--padding-3xs) var(--padding-sm);
+    border-radius: var(--style-border-radius-pills);
+    background: var(--color-primary);
+    color: var(--color-background);
+    font-size: var(--font-paragraph-small--size);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+  }
+
+  .package-option__image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .package-option__title {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-paragraph--size);
+  }
+
+  .package-option__subtitle {
+    opacity: var(--opacity-80, 0.8);
+    font-size: var(--font-paragraph-small--size);
+  }
+
+  .package-option__bonus {
+    font-size: var(--font-paragraph-small--size);
+    opacity: var(--opacity-80, 0.8);
+  }
+
+  .package-option__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--gap-3xs);
+    margin-block-start: var(--margin-2xs);
+  }
+
+  .package-option__price-now {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .package-option__price-compare {
+    opacity: var(--opacity-80, 0.8);
+  }
+
+  .package-option__savings {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-paragraph-small--size);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Package option",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "variant_option_value",
+      "label": "Matching variant option value",
+      "info": "Must exactly match one of this product's variant option values, e.g. \"2 Dogs\".",
+      "default": "1 Dog"
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight",
+      "label": "Highlight as most popular",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "MOST POPULAR"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "For 1 Dog"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Perfect for a single dog household"
+    },
+    {
+      "type": "richtext",
+      "id": "bonus_items",
+      "label": "Bonus items",
+      "default": "<p>Includes collar, charger, and training flags</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Package option"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,121 @@
+
+
+<script
+  src="{{ 'package-selector.js' | asset_url }}"
+  type="module"
+></script>
+
+<package-selector
+  class="package-selector spacing-style"
+  style="{% render 'spacing-style', settings: block.settings %}"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.heading != blank -%}
+    <p class="package-selector__heading">{{ block.settings.heading | escape }}</p>
+  {%- endif -%}
+
+  <div
+    class="package-selector__grid"
+    ref="grid"
+    style="--package-selector-columns: {{ block.settings.columns }};"
+  >
+    {% content_for 'blocks' %}
+  </div>
+</package-selector>
+
+{% stylesheet %}
+  .package-selector {
+    display: block;
+  }
+
+  .package-selector__heading {
+    margin: 0 0 var(--margin-2xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .package-selector__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--package-selector-columns, 2), 1fr);
+    gap: var(--gap-sm);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Package selector",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_package-option"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your package"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Package selector",
+      "blocks": {
+        "option-1": {
+          "type": "_package-option",
+          "settings": {
+            "variant_option_value": "1 Dog",
+            "title": "For 1 Dog",
+            "subtitle": "Perfect for a single dog household",
+            "badge_text": ""
+          }
+        },
+        "option-2": {
+          "type": "_package-option",
+          "settings": {
+            "variant_option_value": "2 Dogs",
+            "title": "For 2 Dogs",
+            "subtitle": "Our most popular bundle",
+            "badge_text": "MOST POPULAR",
+            "highlight": true
+          }
+        }
+      },
+      "block_order": ["option-1", "option-2"]
+    }
+  ]
+}
+{% endschema %}

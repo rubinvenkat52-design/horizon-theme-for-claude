@@ -1,0 +1,939 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "none",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 20,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "header": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h2"
+                  }
+                },
+                "rating": {
+                  "type": "review",
+                  "settings": {
+                    "stars_style": "shaded",
+                    "show_number": true,
+                    "rating_color": "primary",
+                    "type_preset": "paragraph",
+                    "width": "fit-content"
+                  }
+                },
+                "price": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "h4",
+                    "width": "100%",
+                    "alignment": "left"
+                  }
+                }
+              },
+              "block_order": ["title", "rating", "price"]
+            },
+            "bullets": {
+              "type": "text",
+              "settings": {
+                "text": "<ul><li>Covers up to 5 acres of yard</li><li>Adjustable vibration and static correction</li><li>Waterproof, rechargeable collar</li><li>Works for unlimited dogs on one base</li></ul>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte"
+              }
+            },
+            "package_selector": {
+              "type": "package-selector",
+              "settings": {
+                "heading": "Choose your package",
+                "columns": 2,
+                "padding-block-start": 8,
+                "padding-block-end": 8
+              },
+              "blocks": {
+                "pkg_1": {
+                  "type": "_package-option",
+                  "settings": {
+                    "variant_option_value": "1 Dog",
+                    "title": "For 1 Dog",
+                    "subtitle": "Perfect for a single dog household",
+                    "badge_text": "",
+                    "highlight": false,
+                    "bonus_items": "<p>Includes collar, charger, and training flags</p>"
+                  }
+                },
+                "pkg_2": {
+                  "type": "_package-option",
+                  "settings": {
+                    "variant_option_value": "2 Dogs",
+                    "title": "For 2 Dogs",
+                    "subtitle": "Our most popular bundle",
+                    "badge_text": "MOST POPULAR",
+                    "highlight": true,
+                    "bonus_items": "<p>Includes 2 collars, 2 chargers, and training flags</p>"
+                  }
+                }
+              },
+              "block_order": ["pkg_1", "pkg_2"]
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "trust_row": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "gap": 16,
+                "width": "fill",
+                "custom_width": 100,
+                "height": "fit",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_1": {
+                  "type": "icon",
+                  "settings": { "icon": "truck", "width": 18 }
+                },
+                "text_1": {
+                  "type": "text",
+                  "settings": { "text": "<p>Free shipping</p>", "type_preset": "paragraph" }
+                },
+                "icon_2": {
+                  "type": "icon",
+                  "settings": { "icon": "return", "width": 18 }
+                },
+                "text_2": {
+                  "type": "text",
+                  "settings": { "text": "<p>30-day guarantee</p>", "type_preset": "paragraph" }
+                },
+                "icon_3": {
+                  "type": "icon",
+                  "settings": { "icon": "lock", "width": 18 }
+                },
+                "text_3": {
+                  "type": "text",
+                  "settings": { "text": "<p>Secure checkout</p>", "type_preset": "paragraph" }
+                }
+              },
+              "block_order": ["icon_1", "text_1", "icon_2", "text_2", "icon_3", "text_3"]
+            },
+            "mini_accordion": {
+              "type": "accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "row_1": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Shipping & delivery" },
+                  "blocks": {
+                    "text-1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Orders ship within 1-2 business days and arrive within 5-7 business days.</p>",
+                        "width": "100%"
+                      }
+                    }
+                  },
+                  "block_order": ["text-1"]
+                },
+                "row_2": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Our guarantee" },
+                  "blocks": {
+                    "text-1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Try it for 30 days. If you're not satisfied, return it for a full refund.</p>",
+                        "width": "100%"
+                      }
+                    }
+                  },
+                  "block_order": ["text-1"]
+                }
+              },
+              "block_order": ["row_1", "row_2"]
+            },
+            "payment_icons": {
+              "type": "payment-icons",
+              "settings": {
+                "horizontal_alignment": "flex-start",
+                "gap": 10,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": [
+            "header",
+            "bullets",
+            "package_selector",
+            "variant_picker",
+            "buy_buttons",
+            "trust_row",
+            "mini_accordion",
+            "payment_icons"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "marquee_top": {
+      "type": "marquee",
+      "blocks": {
+        "text_1": {
+          "type": "text",
+          "settings": { "text": "<p>Free shipping on all orders</p>", "type_preset": "h6" }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": { "text": "<p>30-day money-back guarantee</p>", "type_preset": "h6" }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": { "text": "<p>5-star rated by pet parents</p>", "type_preset": "h6" }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": { "text": "<p>Set up in under 30 minutes</p>", "type_preset": "h6" }
+        }
+      },
+      "block_order": ["text_1", "text_2", "text_3", "text_4"],
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 16,
+        "padding-block-end": 16,
+        "gap_between_elements": 32
+      }
+    },
+    "carousel_testimonials": {
+      "type": "carousel",
+      "blocks": {
+        "static-header": {
+          "type": "group",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Join thousands of happy customers</h3>",
+                "type_preset": "h3",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left"
+              }
+            }
+          },
+          "block_order": ["heading"]
+        },
+        "static-carousel-content": {
+          "type": "_carousel-content",
+          "static": true,
+          "settings": {
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "position": "top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "height": "fit"
+          },
+          "blocks": {
+            "card_1": {
+              "type": "_card",
+              "blocks": {
+                "image_1": { "type": "image" },
+                "rating_1": {
+                  "type": "review",
+                  "settings": { "stars_style": "shaded", "show_number": false, "type_preset": "paragraph" }
+                },
+                "name_1": {
+                  "type": "text",
+                  "settings": { "text": "<p><strong>Jordan M.</strong></p>", "type_preset": "h6" }
+                },
+                "quote_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>My dog finally respects the boundary. We haven't seen her near the road since.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": ["image_1", "rating_1", "name_1", "quote_1"]
+            },
+            "card_2": {
+              "type": "_card",
+              "blocks": {
+                "image_2": { "type": "image" },
+                "rating_2": {
+                  "type": "review",
+                  "settings": { "stars_style": "shaded", "show_number": false, "type_preset": "paragraph" }
+                },
+                "name_2": {
+                  "type": "text",
+                  "settings": { "text": "<p><strong>Priya S.</strong></p>", "type_preset": "h6" }
+                },
+                "quote_2": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Setup took less time than I expected and our two dogs learned the boundary within days.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": ["image_2", "rating_2", "name_2", "quote_2"]
+            },
+            "card_3": {
+              "type": "_card",
+              "blocks": {
+                "image_3": { "type": "image" },
+                "rating_3": {
+                  "type": "review",
+                  "settings": { "stars_style": "shaded", "show_number": false, "type_preset": "paragraph" }
+                },
+                "name_3": {
+                  "type": "text",
+                  "settings": { "text": "<p><strong>Alex T.</strong></p>", "type_preset": "h6" }
+                },
+                "quote_3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Customer support walked us through training and it has held up perfectly since.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": ["image_3", "rating_3", "name_3", "quote_3"]
+            }
+          },
+          "block_order": ["card_1", "card_2", "card_3"]
+        }
+      },
+      "block_order": ["static-header"],
+      "settings": {
+        "columns": 3,
+        "mobile_columns": "1",
+        "section_width": "page-width",
+        "columns_gap": 12,
+        "color_scheme": "scheme-1",
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "big_heading_rating": {
+      "type": "section",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Thousands of dogs are walking off-leash with confidence</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2"
+          }
+        },
+        "rating": {
+          "type": "review",
+          "settings": {
+            "stars_style": "shaded",
+            "show_number": true,
+            "rating_color": "primary",
+            "type_preset": "h5",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": ["heading", "rating"],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 20,
+        "section_width": "page-width",
+        "color_scheme": "scheme-3",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "media_with_content": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image_position": "cover"
+          }
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 20
+          },
+          "blocks": {
+            "caption": {
+              "type": "text",
+              "settings": { "text": "<p>HOW IT WORKS</p>", "type_preset": "h6" }
+            },
+            "group": {
+              "type": "group",
+              "settings": { "height": "fit" },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": { "text": "<h3>From chaos to calm in under a week</h3>", "type_preset": "h3" }
+                },
+                "body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Most dogs learn their new boundary within days of consistent, positive training. No more bolted gates or frantic chases down the street.</p>",
+                    "max_width": "narrow",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": ["heading", "body"]
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "See how it works",
+                "style_class": "link"
+              }
+            }
+          },
+          "block_order": ["caption", "group", "button"]
+        }
+      },
+      "block_order": ["media", "content"],
+      "settings": {
+        "media_position": "left",
+        "media_width": "wide",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "color_scheme": "scheme-4",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "key_metrics": {
+      "type": "key-metrics",
+      "blocks": {
+        "stat-1": {
+          "type": "_stat-item",
+          "settings": { "value": "92", "suffix": "%", "label": "Customers report calmer walks within 2 weeks" }
+        },
+        "stat-2": {
+          "type": "_stat-item",
+          "settings": { "value": "10000", "suffix": "+", "label": "Happy dogs protected" }
+        },
+        "stat-3": {
+          "type": "_stat-item",
+          "settings": { "value": "4.8", "decimals": 1, "suffix": "/5", "label": "Average customer rating" }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"],
+      "settings": {
+        "heading": "",
+        "section_width": "page-width",
+        "columns": 3,
+        "color_scheme": "scheme-2",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "faq": {
+      "type": "section",
+      "blocks": {
+        "group_left": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "height": "fit",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": { "text": "<h3>Your questions, answered</h3>", "type_preset": "h3", "width": "100%" }
+            },
+            "sub": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Everything you need to know before you start training.</p>",
+                "type_preset": "rte",
+                "width": "100%"
+              }
+            }
+          },
+          "block_order": ["heading", "sub"]
+        },
+        "accordion": {
+          "type": "accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h6",
+            "inherit_color_scheme": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "row_1": {
+              "type": "_accordion-row",
+              "settings": { "heading": "How long does training take?" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Most dogs learn their new boundary within 1-2 weeks of consistent, positive training.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row_2": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Will it work for my breed?" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes. Correction levels are adjustable, so it works for breeds and temperaments of all sizes.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row_3": {
+              "type": "_accordion-row",
+              "settings": { "heading": "What's the coverage area?" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Coverage depends on the package you choose and your yard's terrain. See the package options above for details.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            },
+            "row_4": {
+              "type": "_accordion-row",
+              "settings": { "heading": "Is the collar waterproof?" },
+              "blocks": {
+                "text-1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes, the collar is fully waterproof and rechargeable.</p>",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": ["text-1"]
+            }
+          },
+          "block_order": ["row_1", "row_2", "row_3", "row_4"]
+        }
+      },
+      "block_order": ["group_left", "accordion"],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "gap": 48,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "guarantee_cta": {
+      "type": "section",
+      "blocks": {
+        "icon": {
+          "type": "icon",
+          "settings": { "icon": "return", "width": 40 }
+        },
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Try it risk-free for 30 days</h2>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h2"
+          }
+        },
+        "body": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you're not completely satisfied, return it within 30 days for a full refund.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop now",
+            "link": "shopify://collections/all",
+            "style_class": "button"
+          }
+        }
+      },
+      "block_order": ["icon", "heading", "body", "button"],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "marquee_bottom": {
+      "type": "marquee",
+      "blocks": {
+        "text_1": {
+          "type": "text",
+          "settings": { "text": "<p>10,000+ happy dogs protected</p>", "type_preset": "h6" }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": { "text": "<p>50,000+ five-star reviews</p>", "type_preset": "h6" }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": { "text": "<p>Featured in Pet Lovers Weekly</p>", "type_preset": "h6" }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": { "text": "<p>30-day money-back guarantee</p>", "type_preset": "h6" }
+        }
+      },
+      "block_order": ["text_1", "text_2", "text_3", "text_4"],
+      "settings": {
+        "movement_direction": "reverse",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 16,
+        "padding-block-end": 16,
+        "gap_between_elements": 32
+      }
+    },
+    "customer_reviews": {
+      "type": "customer-reviews",
+      "blocks": {
+        "rating": {
+          "type": "review",
+          "static": true,
+          "settings": {
+            "stars_style": "shaded",
+            "show_number": true,
+            "type_preset": "h5"
+          }
+        },
+        "write-review": {
+          "type": "button",
+          "static": true,
+          "settings": {
+            "label": "Write a review",
+            "style_class": "button-secondary"
+          }
+        },
+        "review-1": {
+          "type": "_review-card",
+          "settings": {
+            "author_name": "Jordan M.",
+            "rating": "5",
+            "date": "2 weeks ago",
+            "title": "Worked from day one",
+            "body": "<p>Setup was simple and my dog learned the boundary within a few days. Couldn't be happier.</p>"
+          }
+        },
+        "review-2": {
+          "type": "_review-card",
+          "settings": {
+            "author_name": "Priya S.",
+            "rating": "5",
+            "date": "1 month ago",
+            "title": "Great peace of mind",
+            "body": "<p>We have two dogs with very different temperaments and this worked for both. Customer support was responsive too.</p>"
+          }
+        },
+        "review-3": {
+          "type": "_review-card",
+          "settings": {
+            "author_name": "Alex T.",
+            "rating": "4",
+            "date": "2 months ago",
+            "title": "Solid, with a short learning curve",
+            "body": "<p>Took about a week of training flags before our dog respected the boundary, but it has held up well since.</p>"
+          }
+        }
+      },
+      "block_order": ["rating", "write-review", "review-1", "review-2", "review-3"],
+      "settings": {
+        "heading": "Customer reviews",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "marquee_top",
+    "carousel_testimonials",
+    "big_heading_rating",
+    "media_with_content",
+    "key_metrics",
+    "faq",
+    "guarantee_cta",
+    "marquee_bottom",
+    "customer_reviews"
+  ]
+}

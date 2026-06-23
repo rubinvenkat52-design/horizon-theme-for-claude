@@ -3,22 +3,36 @@ import { mediaQueryLarge, isMobileBreakpoint } from '@theme/utilities';
 // Accordion
 // Still extends HTMLElement over Component so that refs are still available to parent components (e.g. SortingFilterComponent)
 class AccordionCustom extends HTMLElement {
+  /** @type {HTMLDetailsElement | undefined} */
+  #detailsElement;
+
+  /** @type {HTMLElement | undefined} */
+  #summaryElement;
+
   /** @type {HTMLDetailsElement} */
   get details() {
-    const details = this.querySelector('details');
+    if (!this.#detailsElement) {
+      const details = this.querySelector('details');
 
-    if (!(details instanceof HTMLDetailsElement)) throw new Error('Details element not found');
+      if (!(details instanceof HTMLDetailsElement)) throw new Error('Details element not found');
 
-    return details;
+      this.#detailsElement = details;
+    }
+
+    return this.#detailsElement;
   }
 
   /** @type {HTMLElement} */
   get summary() {
-    const summary = this.details.querySelector('summary');
+    if (!this.#summaryElement) {
+      const summary = this.details.querySelector('summary');
 
-    if (!(summary instanceof HTMLElement)) throw new Error('Summary element not found');
+      if (!(summary instanceof HTMLElement)) throw new Error('Summary element not found');
 
-    return summary;
+      this.#summaryElement = summary;
+    }
+
+    return this.#summaryElement;
   }
 
   get #disableOnMobile() {
@@ -51,6 +65,10 @@ class AccordionCustom extends HTMLElement {
   disconnectedCallback() {
     // Disconnect all the event listeners
     this.#controller.abort();
+
+    // Invalidate cached element refs in case the content changes while disconnected
+    this.#detailsElement = undefined;
+    this.#summaryElement = undefined;
   }
 
   /**

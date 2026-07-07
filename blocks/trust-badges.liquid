@@ -1,47 +1,66 @@
 
-
 {% liquid
   assign s = block.settings
 %}
 
 <div class="trust-badges" {{ block.shopify_attributes }}>
-  {%- for i in (1..3) -%}
-    {%- liquid
-      assign icon_key    = 'icon_' | append: i
-      assign img_key     = 'icon_image_' | append: i
-      assign heading_key = 'heading_' | append: i
-      assign subtext_key = 'subtext_' | append: i
 
-      assign badge_icon    = s[icon_key]
-      assign badge_image   = s[img_key]
-      assign badge_heading = s[heading_key]
-      assign badge_subtext = s[subtext_key]
-    -%}
-
-    {%- if i > 1 and s.show_dividers -%}
-      <span class="trust-badges__divider" aria-hidden="true"></span>
-    {%- endif -%}
-
-    <div class="trust-badge">
-      <div class="trust-badge__icon">
-        {%- render 'icon-or-image',
-          icon: badge_icon,
-          image_upload: badge_image,
-          width: s.icon_size
-        -%}
-      </div>
-      {%- if badge_heading != blank or badge_subtext != blank -%}
-        <div class="trust-badge__content">
-          {%- if badge_heading != blank -%}
-            <p class="trust-badge__heading">{{ badge_heading }}</p>
-          {%- endif -%}
-          {%- if badge_subtext != blank -%}
-            <p class="trust-badge__subtext">{{ badge_subtext }}</p>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
+  <div class="trust-badge">
+    <div class="trust-badge__icon">
+      {%- render 'icon-or-image', icon: s.icon_1, image_upload: s.icon_image_1, width: s.icon_size -%}
     </div>
-  {%- endfor -%}
+    {%- if s.heading_1 != blank or s.subtext_1 != blank -%}
+      <div class="trust-badge__content">
+        {%- if s.heading_1 != blank -%}
+          <p class="trust-badge__heading">{{ s.heading_1 }}</p>
+        {%- endif -%}
+        {%- if s.subtext_1 != blank -%}
+          <p class="trust-badge__subtext">{{ s.subtext_1 }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if s.show_dividers -%}
+    <span class="trust-badges__divider" aria-hidden="true"></span>
+  {%- endif -%}
+
+  <div class="trust-badge">
+    <div class="trust-badge__icon">
+      {%- render 'icon-or-image', icon: s.icon_2, image_upload: s.icon_image_2, width: s.icon_size -%}
+    </div>
+    {%- if s.heading_2 != blank or s.subtext_2 != blank -%}
+      <div class="trust-badge__content">
+        {%- if s.heading_2 != blank -%}
+          <p class="trust-badge__heading">{{ s.heading_2 }}</p>
+        {%- endif -%}
+        {%- if s.subtext_2 != blank -%}
+          <p class="trust-badge__subtext">{{ s.subtext_2 }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if s.show_dividers -%}
+    <span class="trust-badges__divider" aria-hidden="true"></span>
+  {%- endif -%}
+
+  <div class="trust-badge">
+    <div class="trust-badge__icon">
+      {%- render 'icon-or-image', icon: s.icon_3, image_upload: s.icon_image_3, width: s.icon_size -%}
+    </div>
+    {%- if s.heading_3 != blank or s.subtext_3 != blank -%}
+      <div class="trust-badge__content">
+        {%- if s.heading_3 != blank -%}
+          <p class="trust-badge__heading">{{ s.heading_3 }}</p>
+        {%- endif -%}
+        {%- if s.subtext_3 != blank -%}
+          <p class="trust-badge__subtext">{{ s.subtext_3 }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
 </div>
 
 {% stylesheet %}
@@ -112,17 +131,17 @@
       "id": "icon_1",
       "label": "Icon",
       "options": [
-        { "value": "none",     "label": "None" },
-        { "value": "truck",    "label": "Truck" },
-        { "value": "plane",    "label": "Plane" },
-        { "value": "box",      "label": "Box" },
-        { "value": "lock",     "label": "Lock" },
-        { "value": "check_box","label": "Check" },
-        { "value": "star",     "label": "Star" },
-        { "value": "return",   "label": "Return" },
-        { "value": "recycle",  "label": "Recycle" },
-        { "value": "heart",    "label": "Heart" },
-        { "value": "leaf",     "label": "Leaf" }
+        { "value": "none",      "label": "None" },
+        { "value": "truck",     "label": "Truck" },
+        { "value": "plane",     "label": "Plane" },
+        { "value": "box",       "label": "Box" },
+        { "value": "lock",      "label": "Lock" },
+        { "value": "check_box", "label": "Check" },
+        { "value": "star",      "label": "Star" },
+        { "value": "return",    "label": "Return" },
+        { "value": "recycle",   "label": "Recycle" },
+        { "value": "heart",     "label": "Heart" },
+        { "value": "leaf",      "label": "Leaf" }
       ],
       "default": "truck"
     },
@@ -152,17 +171,17 @@
       "id": "icon_2",
       "label": "Icon",
       "options": [
-        { "value": "none",     "label": "None" },
-        { "value": "truck",    "label": "Truck" },
-        { "value": "plane",    "label": "Plane" },
-        { "value": "box",      "label": "Box" },
-        { "value": "lock",     "label": "Lock" },
-        { "value": "check_box","label": "Check" },
-        { "value": "star",     "label": "Star" },
-        { "value": "return",   "label": "Return" },
-        { "value": "recycle",  "label": "Recycle" },
-        { "value": "heart",    "label": "Heart" },
-        { "value": "leaf",     "label": "Leaf" }
+        { "value": "none",      "label": "None" },
+        { "value": "truck",     "label": "Truck" },
+        { "value": "plane",     "label": "Plane" },
+        { "value": "box",       "label": "Box" },
+        { "value": "lock",      "label": "Lock" },
+        { "value": "check_box", "label": "Check" },
+        { "value": "star",      "label": "Star" },
+        { "value": "return",    "label": "Return" },
+        { "value": "recycle",   "label": "Recycle" },
+        { "value": "heart",     "label": "Heart" },
+        { "value": "leaf",      "label": "Leaf" }
       ],
       "default": "star"
     },
@@ -192,17 +211,17 @@
       "id": "icon_3",
       "label": "Icon",
       "options": [
-        { "value": "none",     "label": "None" },
-        { "value": "truck",    "label": "Truck" },
-        { "value": "plane",    "label": "Plane" },
-        { "value": "box",      "label": "Box" },
-        { "value": "lock",     "label": "Lock" },
-        { "value": "check_box","label": "Check" },
-        { "value": "star",     "label": "Star" },
-        { "value": "return",   "label": "Return" },
-        { "value": "recycle",  "label": "Recycle" },
-        { "value": "heart",    "label": "Heart" },
-        { "value": "leaf",     "label": "Leaf" }
+        { "value": "none",      "label": "None" },
+        { "value": "truck",     "label": "Truck" },
+        { "value": "plane",     "label": "Plane" },
+        { "value": "box",       "label": "Box" },
+        { "value": "lock",      "label": "Lock" },
+        { "value": "check_box", "label": "Check" },
+        { "value": "star",      "label": "Star" },
+        { "value": "return",    "label": "Return" },
+        { "value": "recycle",   "label": "Recycle" },
+        { "value": "heart",     "label": "Heart" },
+        { "value": "leaf",      "label": "Leaf" }
       ],
       "default": "return"
     },

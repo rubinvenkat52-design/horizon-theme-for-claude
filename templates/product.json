@@ -217,23 +217,6 @@
               },
               "block_order": []
             },
-            "trust_badges_main": {
-              "type": "trust-badges",
-              "settings": {
-                "icon_1": "truck",
-                "heading_1": "Free Shipping",
-                "subtext_1": "On orders over $50",
-                "icon_2": "star",
-                "heading_2": "Money-Back Guarantee",
-                "subtext_2": "30-day guarantee",
-                "icon_3": "return",
-                "heading_3": "Easy Returns",
-                "subtext_3": "Hassle-free returns",
-                "icon_size": 28,
-                "show_dividers": true
-              },
-              "blocks": {}
-            },
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
@@ -266,7 +249,6 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "trust_badges_main",
             "text_aEtTtq"
           ]
         }

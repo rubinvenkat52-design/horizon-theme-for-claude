@@ -9,25 +9,26 @@
  */{
   "sections": {
     "main": {
-      "type": "product-information",
+      "type": "product-info-hero",
       "blocks": {
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "slideshow",
+            "media_presentation": "carousel",
             "media_columns": "one",
             "image_gap": 0,
-            "large_first_image": true,
-            "icons_style": "none",
-            "slideshow_controls_style": "counter",
-            "slideshow_mobile_controls_style": "dots",
+            "large_first_image": false,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "thumbnails",
             "thumbnail_position": "bottom",
-            "thumbnail_width": 64,
+            "thumbnail_width": 60,
+            "thumbnail_radius": 4,
             "aspect_ratio": "adapt",
-            "constrain_to_viewport": true,
-            "media_fit": "cover",
-            "media_radius": 0,
+            "constrain_to_viewport": false,
+            "media_fit": "contain",
+            "media_radius": 4,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -36,6 +37,26 @@
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "feature-boxes-hero": {
+          "type": "feature-boxes",
+          "static": true,
+          "settings": {
+            "icon_1": "check_box",
+            "heading_1": "No Subscriptions",
+            "subtext_1": "One-time purchase",
+            "icon_2": "star",
+            "heading_2": "100% Waterproof",
+            "subtext_2": "All-weather use",
+            "icon_3": "truck",
+            "heading_3": "4+ Day Battery",
+            "subtext_3": "Fast rechargeable",
+            "box_bg_color": "#1a3a2a",
+            "box_text_color": "#ffffff",
+            "icon_size": 28,
+            "box_radius": 8
           },
           "blocks": {}
         },
@@ -502,13 +523,8 @@
         }
       },
       "settings": {
-        "content_width": "content-center-aligned",
-        "desktop_media_position": "left",
-        "equal_columns": false,
-        "limit_details_width": false,
-        "gap": 48,
-        "enable_sticky_add_to_cart": true,
         "color_scheme": "",
+        "gap": 48,
         "padding-block-start": 0,
         "padding-block-end": 0
       }

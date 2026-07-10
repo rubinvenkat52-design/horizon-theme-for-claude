@@ -1,0 +1,275 @@
+
+<script type="application/ld+json">
+  {{ closest.product | structured_data }}
+</script>
+
+{% comment %} Capture each zone separately so we can place them into a custom 3-zone grid {% endcomment %}
+{% capture gallery_html %}
+  {%- content_for 'block',
+    type: '_product-media-gallery',
+    id: 'media-gallery',
+    closest.product: closest.product
+  -%}
+{% endcapture %}
+
+{% capture boxes_html %}
+  {%- content_for 'block',
+    type: 'feature-boxes',
+    id: 'feature-boxes-hero',
+    closest.product: closest.product
+  -%}
+{% endcapture %}
+
+{% capture details_html %}
+  {%- content_for 'block',
+    type: '_product-details',
+    id: 'product-details',
+    closest.product: closest.product
+  -%}
+{% endcapture %}
+
+{%- assign product_has_media = true -%}
+{%- if closest.product == blank or closest.product.media.size == 0 -%}
+  {%- assign product_has_media = false -%}
+{%- endif -%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="product-info-hero section section--page-width spacing-style color-{{ section.settings.color_scheme }}"
+  style="{% render 'spacing-style', settings: section.settings %} --pih-gap: {{ section.settings.gap }}px;"
+  data-testid="product-information"
+>
+  <div class="product-info-hero__grid{% unless product_has_media %} product-info-hero--no-media{% endunless %}">
+
+    {%- if product_has_media -%}
+      <div class="product-info-hero__left">
+
+        <div class="product-info-hero__gallery">
+          {{ gallery_html }}
+        </div>
+
+        {%- unless boxes_html == blank -%}
+          <div class="product-info-hero__boxes">
+            {{ boxes_html }}
+          </div>
+        {%- endunless -%}
+
+      </div>
+    {%- endif -%}
+
+    <div class="product-info-hero__right">
+      {{ details_html }}
+    </div>
+
+  </div>
+</div>
+
+{% stylesheet %}
+
+/* =========================================================
+   Product Info Hero — 3-zone layout
+   Left zone:  main image (≈62%) + feature boxes (≈38%)
+   Right zone: product details
+   ========================================================= */
+
+.product-info-hero {
+  position: relative;
+}
+
+/* ---- Outer grid ---- */
+.product-info-hero__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Inner left: image + boxes side-by-side ---- */
+.product-info-hero__left {
+  display: grid;
+  grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+  align-items: stretch;
+  gap: 6px;
+}
+
+.product-info-hero__gallery {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Feature-boxes column fills the same height as the gallery */
+.product-info-hero__boxes {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* feature-boxes block: fill entire column, space boxes evenly */
+.product-info-hero__boxes .feature-boxes {
+  flex: 1;
+  height: 100%;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+/* Each box: icon above, text below, centered */
+.product-info-hero__boxes .feature-box {
+  flex: 1;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 6px;
+  gap: 5px;
+  min-height: 0;
+}
+
+.product-info-hero__boxes .feature-box__content {
+  align-items: center;
+}
+
+.product-info-hero__boxes .feature-box__icon svg,
+.product-info-hero__boxes .feature-box__icon img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Mobile — compact headings, hide subtext */
+@media screen and (max-width: 749px) {
+  .product-info-hero__left {
+    grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+    gap: 5px;
+  }
+
+  .product-info-hero__boxes .feature-box {
+    padding: 5px 4px;
+    gap: 3px;
+  }
+
+  .product-info-hero__boxes .feature-box__icon svg,
+  .product-info-hero__boxes .feature-box__icon img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .product-info-hero__boxes .feature-box__heading {
+    font-size: 0.58rem;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .product-info-hero__boxes .feature-box__subtext {
+    display: none;
+  }
+}
+
+/* ---- Desktop: side-by-side outer columns ---- */
+@media screen and (min-width: 750px) {
+  .product-info-hero__grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 0 var(--pih-gap, 40px);
+    align-items: start;
+  }
+
+  .product-info-hero--no-media .product-info-hero__right {
+    grid-column: 1 / -1;
+  }
+
+  .product-info-hero__left {
+    grid-template-columns: minmax(0, 63fr) minmax(0, 37fr);
+    gap: 10px;
+  }
+
+  .product-info-hero__boxes .feature-box {
+    padding: 12px 8px;
+    gap: 7px;
+  }
+
+  .product-info-hero__boxes .feature-box__icon svg,
+  .product-info-hero__boxes .feature-box__icon img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .product-info-hero__boxes .feature-box__heading {
+    font-size: var(--font-paragraph-small--size, 0.8rem);
+    line-height: 1.25;
+  }
+
+  .product-info-hero__boxes .feature-box__subtext {
+    display: block;
+    font-size: calc(var(--font-paragraph-small--size, 0.8rem) * 0.82);
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 1200px) {
+  .product-info-hero__grid {
+    grid-template-columns: 1.85fr 1fr;
+  }
+}
+
+/* Hide native slideshow arrows — swipe hint replaces them */
+.product-info-hero__gallery .slideshow-arrows {
+  display: none !important;
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product hero layout",
+  "blocks": [
+    {
+      "type": "feature-boxes",
+      "name": "Feature boxes",
+      "limit": 1
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Column gap (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": []
+}
+{% endschema %}

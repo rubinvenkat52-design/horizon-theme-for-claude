@@ -15,19 +15,20 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
-            "media_columns": "two",
-            "image_gap": 4,
+            "media_presentation": "carousel",
+            "media_columns": "one",
+            "image_gap": 0,
             "large_first_image": false,
-            "icons_style": "none",
-            "slideshow_controls_style": "counter",
-            "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "thumbnails",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 64,
+            "thumbnail_radius": 4,
             "aspect_ratio": "adapt",
-            "constrain_to_viewport": true,
+            "constrain_to_viewport": false,
             "media_fit": "contain",
-            "media_radius": 0,
+            "media_radius": 4,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -66,6 +67,25 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "feature_boxes_main": {
+              "type": "feature-boxes",
+              "settings": {
+                "icon_1": "check_box",
+                "heading_1": "No Subscriptions",
+                "subtext_1": "One-time purchase, no recurring fees",
+                "icon_2": "star",
+                "heading_2": "100% Waterproof",
+                "subtext_2": "Works in any weather condition",
+                "icon_3": "truck",
+                "heading_3": "4+ Day Battery",
+                "subtext_3": "Fast rechargeable battery life",
+                "box_bg_color": "#1a3a2a",
+                "box_text_color": "#ffffff",
+                "icon_size": 32,
+                "box_radius": 8
+              },
+              "blocks": {}
+            },
             "group_icgrde": {
               "type": "group",
               "name": "Header",
@@ -262,6 +282,7 @@
             }
           },
           "block_order": [
+            "feature_boxes_main",
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",

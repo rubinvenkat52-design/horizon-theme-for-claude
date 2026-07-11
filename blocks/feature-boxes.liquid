@@ -110,6 +110,127 @@
   display: none !important;
 }
 
+/* ── Hero layout (Perfect template) ── */
+
+/*
+ * Before JS runs, the feature-boxes block is an additional section block
+ * rendered BELOW the product grid as a direct child of .product-information.
+ * Hide it initially to prevent a flash before JS repositions it.
+ */
+.product-information > .feature-boxes {
+  display: none !important;
+}
+
+/*
+ * After JS moves .feature-boxes into .pih-boxes-column inside the media div,
+ * reveal it and apply the side-by-side layout.
+ */
+
+/* Media div: flex row when it contains the boxes column */
+[data-testid="product-information-media"]:has(.pih-boxes-column) {
+  display: flex !important;
+  gap: 6px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+/* Gallery wrapper — ~62% of the media column */
+.pih-gallery-wrapper {
+  flex: 62;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Boxes column — ~38% of the media column */
+.pih-boxes-column {
+  flex: 38;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pih-boxes-column .feature-boxes {
+  display: flex !important;  /* override the hide above */
+  flex: 1;
+  height: 100%;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+/* Each box: icon on top, text below, centered */
+.pih-boxes-column .feature-box {
+  flex: 1;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 8px;
+  gap: 6px;
+  min-height: 0;
+}
+
+.pih-boxes-column .feature-box__content {
+  align-items: center;
+}
+
+.pih-boxes-column .feature-box__icon svg,
+.pih-boxes-column .feature-box__icon img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Mobile tweaks */
+@media screen and (max-width: 749px) {
+  [data-testid="product-information-media"]:has(.pih-boxes-column) {
+    gap: 4px;
+  }
+
+  .pih-boxes-column .feature-box {
+    padding: 6px 4px;
+    gap: 3px;
+  }
+
+  .pih-boxes-column .feature-box__icon svg,
+  .pih-boxes-column .feature-box__icon img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .pih-boxes-column .feature-box__heading {
+    font-size: 0.58rem;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .pih-boxes-column .feature-box__subtext {
+    display: none;
+  }
+}
+
+/* Desktop tweaks */
+@media screen and (min-width: 750px) {
+  .pih-boxes-column .feature-box {
+    padding: 14px 10px;
+    gap: 8px;
+  }
+
+  .pih-boxes-column .feature-box__icon svg,
+  .pih-boxes-column .feature-box__icon img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .pih-boxes-column .feature-box__heading {
+    font-size: var(--font-paragraph-small--size, 0.8rem);
+    line-height: 1.25;
+  }
+
+  .pih-boxes-column .feature-box__subtext {
+    display: block;
+    font-size: calc(var(--font-paragraph-small--size, 0.8rem) * 0.82);
+  }
+}
+
 /* ---- Swipe hint overlay ---- */
 .product-swipe-hint {
   position: absolute;

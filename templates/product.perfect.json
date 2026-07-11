@@ -9,7 +9,7 @@
  */{
   "sections": {
     "main": {
-      "type": "product-info-hero",
+      "type": "product-information",
       "blocks": {
         "media-gallery": {
           "type": "_product-media-gallery",
@@ -40,9 +40,8 @@
           },
           "blocks": {}
         },
-        "feature-boxes-hero": {
+        "feature_boxes_hero": {
           "type": "feature-boxes",
-          "static": true,
           "settings": {
             "icon_1": "check_box",
             "heading_1": "No Subscriptions",
@@ -522,9 +521,15 @@
           ]
         }
       },
+      "block_order": ["feature_boxes_hero"],
       "settings": {
-        "color_scheme": "",
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
         "gap": 48,
+        "enable_sticky_add_to_cart": true,
+        "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
       }

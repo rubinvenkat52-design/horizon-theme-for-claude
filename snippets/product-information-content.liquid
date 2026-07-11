@@ -91,18 +91,52 @@
     data-product-grid-content
   >
     {% assign render_order_array = render_order | split: ',' %}
-    {% assign _feat_html = additional_blocks | strip %}
     {% capture media %}
       <div
         class="product-information__media"
         data-testid="product-information-media"
       >
         {{ media_gallery }}
-        {%- unless _feat_html == '' -%}
+        {%- if settings.show_feature_boxes -%}
           <div class="product-information__feature-boxes">
-            {{- additional_blocks -}}
+            <div class="feature-boxes"
+              style="
+                --fb-bg: {{ settings.fb_bg_color | default: '#1a3a2a' }};
+                --fb-text: {{ settings.fb_text_color | default: '#ffffff' }};
+                --fb-radius: {{ settings.fb_radius | default: 8 }}px;
+                --fb-icon-size: {{ settings.fb_icon_size | default: 24 }}px;
+              "
+            >
+              <div class="feature-box">
+                <div class="feature-box__icon">
+                  {%- render 'icon-or-image', icon: settings.fb_icon_1, image_upload: settings.fb_icon_image_1, width: settings.fb_icon_size -%}
+                </div>
+                <div class="feature-box__content">
+                  {%- if settings.fb_heading_1 != blank -%}<p class="feature-box__heading">{{ settings.fb_heading_1 }}</p>{%- endif -%}
+                  {%- if settings.fb_subtext_1 != blank -%}<p class="feature-box__subtext">{{ settings.fb_subtext_1 }}</p>{%- endif -%}
+                </div>
+              </div>
+              <div class="feature-box">
+                <div class="feature-box__icon">
+                  {%- render 'icon-or-image', icon: settings.fb_icon_2, image_upload: settings.fb_icon_image_2, width: settings.fb_icon_size -%}
+                </div>
+                <div class="feature-box__content">
+                  {%- if settings.fb_heading_2 != blank -%}<p class="feature-box__heading">{{ settings.fb_heading_2 }}</p>{%- endif -%}
+                  {%- if settings.fb_subtext_2 != blank -%}<p class="feature-box__subtext">{{ settings.fb_subtext_2 }}</p>{%- endif -%}
+                </div>
+              </div>
+              <div class="feature-box">
+                <div class="feature-box__icon">
+                  {%- render 'icon-or-image', icon: settings.fb_icon_3, image_upload: settings.fb_icon_image_3, width: settings.fb_icon_size -%}
+                </div>
+                <div class="feature-box__content">
+                  {%- if settings.fb_heading_3 != blank -%}<p class="feature-box__heading">{{ settings.fb_heading_3 }}</p>{%- endif -%}
+                  {%- if settings.fb_subtext_3 != blank -%}<p class="feature-box__subtext">{{ settings.fb_subtext_3 }}</p>{%- endif -%}
+                </div>
+              </div>
+            </div>
           </div>
-        {%- endunless -%}
+        {%- endif -%}
       </div>
     {% endcapture %}
 
@@ -115,7 +149,7 @@
     {% endfor %}
   </div>
 
-  {%- if _feat_html == '' -%}{{ additional_blocks }}{%- endif -%}
+  {{ additional_blocks }}
 </div>
 
 {% stylesheet %}

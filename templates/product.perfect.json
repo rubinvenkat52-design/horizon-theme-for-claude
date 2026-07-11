@@ -531,7 +531,21 @@
         "enable_sticky_add_to_cart": true,
         "color_scheme": "",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "show_feature_boxes": true,
+        "fb_icon_1": "check_box",
+        "fb_heading_1": "No Subscriptions",
+        "fb_subtext_1": "One-time purchase",
+        "fb_icon_2": "star",
+        "fb_heading_2": "100% Waterproof",
+        "fb_subtext_2": "All-weather use",
+        "fb_icon_3": "truck",
+        "fb_heading_3": "4+ Day Battery",
+        "fb_subtext_3": "Fast rechargeable",
+        "fb_bg_color": "#1a3a2a",
+        "fb_text_color": "#ffffff",
+        "fb_icon_size": 24,
+        "fb_radius": 8
       }
     },
     "before_after": {

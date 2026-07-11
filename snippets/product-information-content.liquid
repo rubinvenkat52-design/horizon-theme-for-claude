@@ -321,12 +321,35 @@
     --sticky-header-offset: var(--header-height);
   }
 
-  /* Feature boxes column — inside media div for side-by-side layout */
+  /* ── Feature boxes + thumbnail layout ─────────────────────────────────── */
+
+  /* Media wrapper: 2-column sub-grid (image 62% | boxes 38%)
+     padding-bottom reserves space for the full-width thumbnail strip */
   .product-information__media:has(.product-information__feature-boxes) {
+    position: relative;
     display: grid !important;
     grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
     align-items: stretch;
     gap: 6px;
+    padding-bottom: 68px;
+  }
+
+  /* Remove slideshow-component as a positioning context so the thumbnail
+     strip can escape it and be positioned relative to the media wrapper.
+     slideshow-container remains position:relative so arrows/swipe-hint
+     still position correctly inside it. */
+  .product-information__media:has(.product-information__feature-boxes) slideshow-component {
+    position: static;
+  }
+
+  /* Thumbnail strip: pinned to the bottom of the media wrapper, full width */
+  .product-information__media:has(.product-information__feature-boxes) slideshow-controls[thumbnails] {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--color-background);
   }
 
   .product-information__feature-boxes {
@@ -338,6 +361,7 @@
   @media screen and (min-width: 750px) {
     .product-information__media:has(.product-information__feature-boxes) {
       gap: 10px;
+      padding-bottom: 80px;
     }
   }
 {% endstylesheet %}

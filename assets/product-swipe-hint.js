@@ -1,52 +1,4 @@
-/**
- * product-swipe-hint.js
- *
- * Two responsibilities:
- *  1. initHeroLayout  — when .feature-boxes is a section-level additional block
- *     (Perfect template), moves it inside the media column to create the
- *     image | boxes side-by-side layout via DOM manipulation.
- *  2. initSwipeHint   — animated hand icon on the product image carousel to
- *     replace the native nav arrows.
- */
-
-/* ── 1. Hero layout DOM repositioner ──────────────────────────────────────── */
-
-function initHeroLayout() {
-  /* The grid wrapper only exists on product-information sections */
-  const grid = document.querySelector('[data-product-grid-content]');
-  if (!grid) return;
-
-  /* .feature-boxes is rendered as an additional block OUTSIDE the grid
-     on the Perfect template. On the default template it lives inside
-     .product-details > .group-block (INSIDE the grid). */
-  const featureBoxes = document.querySelector('.feature-boxes');
-  if (!featureBoxes || grid.contains(featureBoxes)) return;
-
-  /* Confirmed: this is the Perfect template - proceed with repositioning */
-
-  const mediaWrapper = document.querySelector('[data-testid="product-information-media"]');
-  if (!mediaWrapper) return;
-
-  const gallery = mediaWrapper.querySelector('media-gallery');
-  if (!gallery) return;
-
-  /* Build: [.pih-gallery-wrapper] [.pih-boxes-column] inside the media div */
-  const galleryWrapper = document.createElement('div');
-  galleryWrapper.className = 'pih-gallery-wrapper';
-
-  const boxesColumn = document.createElement('div');
-  boxesColumn.className = 'pih-boxes-column';
-
-  /* Replace gallery with galleryWrapper containing gallery */
-  mediaWrapper.insertBefore(galleryWrapper, gallery);
-  galleryWrapper.appendChild(gallery);
-
-  /* Move .feature-boxes into the boxes column */
-  boxesColumn.appendChild(featureBoxes);
-  mediaWrapper.appendChild(boxesColumn);
-}
-
-/* ── 2. Swipe hint animation ───────────────────────────────────────────────── */
+/* ── Swipe hint animation ───────────────────────────────────────────────── */
 
 const HAND_PATH = `
   <path d="M18.19 12.44c.24.07.46.17.67.3V9a2 2 0 0 0-2-2
@@ -133,8 +85,7 @@ function initSwipeHint() {
 /* ── Bootstrap ─────────────────────────────────────────────────────────────── */
 
 function boot() {
-  initHeroLayout();   /* reposition boxes FIRST so layout is correct */
-  initSwipeHint();    /* then set up swipe animation */
+  initSwipeHint();
 }
 
 if (document.readyState === 'loading') {

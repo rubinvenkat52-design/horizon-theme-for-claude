@@ -91,12 +91,18 @@
     data-product-grid-content
   >
     {% assign render_order_array = render_order | split: ',' %}
+    {% assign _feat_html = additional_blocks | strip %}
     {% capture media %}
       <div
         class="product-information__media"
         data-testid="product-information-media"
       >
         {{ media_gallery }}
+        {%- unless _feat_html == '' -%}
+          <div class="product-information__feature-boxes">
+            {{- additional_blocks -}}
+          </div>
+        {%- endunless -%}
       </div>
     {% endcapture %}
 
@@ -109,7 +115,7 @@
     {% endfor %}
   </div>
 
-  {{ additional_blocks }}
+  {%- if _feat_html == '' -%}{{ additional_blocks }}{%- endif -%}
 </div>
 
 {% stylesheet %}
@@ -313,5 +319,25 @@
   /* If the header is sticky, make product details content stick underneath the header */
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
     --sticky-header-offset: var(--header-height);
+  }
+
+  /* Feature boxes column — inside media div for side-by-side layout */
+  .product-information__media:has(.product-information__feature-boxes) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .product-information__feature-boxes {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .product-information__media:has(.product-information__feature-boxes) {
+      gap: 10px;
+    }
   }
 {% endstylesheet %}
